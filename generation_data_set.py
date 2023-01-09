@@ -6,6 +6,8 @@ files_balance = ["1.csv", "2.csv","balancier.csv","balancier2.csv"]
 files_no_balance = ["1.csv"]
 
 export_file = "data.csv"
+if os.path.exists(export_file):
+    os.remove(export_file)
 nb_aquisition = 5
 # en ms et multiple de 20
 clean_time = 40
