@@ -1,7 +1,9 @@
 import pandas as pd
-from sklearn.model_selection import train_test_split
-from keras.models import Sequential
 from keras.layers import Dense
+from keras.models import Sequential
+from matplotlib import pyplot as plt
+from sklearn.metrics import confusion_matrix, plot_confusion_matrix
+from sklearn.model_selection import train_test_split
 
 # Load the data from the CSV file
 data = pd.read_csv('data.csv')
@@ -27,6 +29,11 @@ model.fit(X_train, y_train, epochs=10, batch_size=32)
 # Evaluate the model
 loss, accuracy = model.evaluate(X_test, y_test)
 print(f'Loss: {loss}, Accuracy: {accuracy}')
+cm = confusion_matrix(X_test, y_test)
+plot_confusion_matrix(X_test, y_test)
+
+# Show the plot
+plt.show()
 
 # Save the model
 model.save('model.h5')

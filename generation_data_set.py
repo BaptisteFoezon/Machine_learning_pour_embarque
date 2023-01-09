@@ -38,3 +38,8 @@ for file in files_no_balance:
 for file in files_balance:
     file = "data/Balance/" + file
     generate_csv(file, 1)
+
+
+nb_balance = 0;
+nb_no_balance = 0.
+with open('data.csv', 'r') as f:
