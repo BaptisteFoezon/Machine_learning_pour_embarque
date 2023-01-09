@@ -2,7 +2,7 @@ import csv
 import pandas as pd
 import os
 
-files_balance = ["1.csv", "2.csv"]
+files_balance = ["1.csv", "2.csv","balancier.csv","balancier2.csv"]
 files_no_balance = ["1.csv"]
 
 export_file = "data.csv"
@@ -39,7 +39,3 @@ for file in files_balance:
     file = "data/Balance/" + file
     generate_csv(file, 1)
 
-
-nb_balance = 0;
-nb_no_balance = 0.
-with open('data.csv', 'r') as f:
