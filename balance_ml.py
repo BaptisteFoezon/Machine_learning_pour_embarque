@@ -2,7 +2,6 @@ import pandas as pd
 from keras.layers import Dense
 from keras.models import Sequential
 from matplotlib import pyplot as plt
-from sklearn.metrics import confusion_matrix, ConfusionMatrixDisplay, plot_confusion_matrix
 from sklearn.model_selection import train_test_split
 
 
@@ -42,9 +41,6 @@ model.fit(X_train, y_train, epochs=10, batch_size=32)
 # Evaluate the model
 loss, accuracy = model.evaluate(X_test, y_test)
 print(f'Loss: {loss}, Accuracy: {accuracy}')
-classifier = estimator(model, ["Balance", "No Balance"])
-figsize = (12,12)
-plot_confusion_matrix(estimator=classifier, X=X_test, y_true=y_test, cmap='Blues', normalize='true', ax=plt.subplots(figsize=figsize)[1])
 # Show the plot
 plt.show()
 
