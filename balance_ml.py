@@ -31,3 +31,8 @@ print(f'Loss: {loss}, Accuracy: {accuracy}')
 # Save the model
 model.save('model.h5')
 
+model_json = model.to_json()
+
+with open('modele.json', 'w') as f:
+    f.write(model_json)
+

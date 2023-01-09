@@ -1,3 +1,4 @@
 *.csv
 autre/
 .idea/
+*.md5
