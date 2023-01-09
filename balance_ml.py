@@ -2,7 +2,7 @@ import pandas as pd
 from keras.layers import Dense
 from keras.models import Sequential
 from matplotlib import pyplot as plt
-from sklearn.metrics import confusion_matrix, plot_confusion_matrix
+from sklearn.metrics import confusion_matrix, ConfusionMatrixDisplay
 from sklearn.model_selection import train_test_split
 
 # Load the data from the CSV file
@@ -30,8 +30,10 @@ model.fit(X_train, y_train, epochs=10, batch_size=32)
 loss, accuracy = model.evaluate(X_test, y_test)
 print(f'Loss: {loss}, Accuracy: {accuracy}')
 cm = confusion_matrix(X_test, y_test)
-plot_confusion_matrix(X_test, y_test)
+labels = ["balance", "no balance"]
+disp = ConfusionMatrixDisplay(confusion_matrix=cm, display_labels=labels)
 
+disp.plot(cmap=plt.cm.Blues)
 # Show the plot
 plt.show()
 
