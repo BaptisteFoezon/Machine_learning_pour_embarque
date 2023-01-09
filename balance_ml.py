@@ -27,3 +27,7 @@ model.fit(X_train, y_train, epochs=10, batch_size=32)
 # Evaluate the model
 loss, accuracy = model.evaluate(X_test, y_test)
 print(f'Loss: {loss}, Accuracy: {accuracy}')
+
+# Save the model
+model.save('model.h5')
+

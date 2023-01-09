@@ -6,7 +6,7 @@ files_balance = ["1.csv", "2.csv"]
 files_no_balance = ["1.csv"]
 
 export_file = "data.csv"
-nb_aquisition = 20
+nb_aquisition = 5
 # en ms et multiple de 20
 clean_time = 40
 
