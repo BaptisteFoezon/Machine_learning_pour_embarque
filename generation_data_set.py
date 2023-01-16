@@ -2,8 +2,8 @@ import csv
 import pandas as pd
 import os
 
-files_balance = ["1.csv", "2.csv","balancier.csv","balancier2.csv"]
-files_no_balance = ["1.csv"]
+files_balance = ["1.csv", "2.csv","balancier.csv","balancier2.csv","balancier3.csv","balancier4.csv","balancier5.csv","balancier6.csv","balancier7.csv"]
+files_no_balance = ["1.csv","Non_Balancier1.csv","Non_Balancier2.csv","Non_Balancier3.csv","Non_Balancier4.csv","Non_Balancier6.csv"]
 
 export_file = "data.csv"
 if os.path.exists(export_file):
