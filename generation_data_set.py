@@ -25,11 +25,11 @@ def generate_csv(file, _result):
     data = pd.concat(test, axis=1).dropna()
     data = data.assign(result=_result)
     if os.path.exists(export_file):
-        data.to_csv(export_file, mode='a', header=not os.path.exists(export_file))
+        data.to_csv(export_file, mode='a',index=False, header=False)
     else:
         with open(export_file, 'w') as file:
             print("création fichier")
-        data.to_csv(export_file, mode='a', header=True)
+        data.to_csv(export_file, mode='a',index=False, header=False)
 
 
 for file in files_no_balance:
