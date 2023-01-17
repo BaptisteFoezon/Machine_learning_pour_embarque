@@ -26,11 +26,11 @@ def generate_csv(file, _result):
     data = data.assign(result=_result)
 
     if os.path.exists(export_file):
-        data.to_csv(export_file, mode='a')
+        data.to_csv(export_file, mode='a', header=not os.path.exists(export_file))
     else:
         with open(export_file, 'w') as file:
             print("création fichier")
-        data.to_csv(export_file, mode='a')
+        data.to_csv(export_file, mode='a', header=True)
 
 
 for file in files_no_balance:
