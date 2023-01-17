@@ -31,7 +31,7 @@ def train(nb_epochs, nb_batch):
     # Evaluate the model
     loss, accuracy = model.evaluate(X_test, y_test)
 
-    visualizer(model)
+    visualizer(model, format='png', view=True)
     print(f'Loss: {loss}, Accuracy: {accuracy}')
     # Show the plot
     plt.show()
