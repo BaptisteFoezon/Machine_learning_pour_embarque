@@ -5,6 +5,8 @@ from matplotlib import pyplot as plt
 from sklearn.model_selection import train_test_split
 
 
+nb_epochs = 50
+nb_batch = 32
 
 # Load the data from the CSV file
 data = pd.read_csv('data.csv')
@@ -25,7 +27,7 @@ model.add(Dense(1, activation='sigmoid'))
 model.compile(loss='binary_crossentropy', optimizer='adam', metrics=['accuracy'])
 
 # Train the model
-model.fit(X_train, y_train, epochs=10, batch_size=32)
+model.fit(X_train, y_train, epochs=nb_epochs, batch_size=nb_batch)
 
 # Evaluate the model
 loss, accuracy = model.evaluate(X_test, y_test)
