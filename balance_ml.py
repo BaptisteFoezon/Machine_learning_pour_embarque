@@ -5,17 +5,6 @@ from matplotlib import pyplot as plt
 from sklearn.model_selection import train_test_split
 
 
-class estimator:
-  _estimator_type = ''
-  classes_=[]
-  def __init__(self, model, classes):
-    self.model = model
-    self._estimator_type = 'classifier'
-    self.classes_ = classes
-  def predict(self, X):
-    y_prob= self.model.predict(X)
-    y_pred = y_prob.argmax(axis=1)
-    return y_pred
 
 # Load the data from the CSV file
 data = pd.read_csv('data.csv')

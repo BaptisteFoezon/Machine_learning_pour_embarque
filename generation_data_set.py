@@ -24,6 +24,7 @@ def generate_csv(file, _result):
     test = [file_csv.shift(-i) for i in range(nb_aquisition)]
     data = pd.concat(test, axis=1).dropna()
     data = data.assign(result=_result)
+
     if os.path.exists(export_file):
         data.to_csv(export_file, mode='a')
     else:
