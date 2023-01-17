@@ -2,22 +2,12 @@ import csv
 import pandas as pd
 import os
 
-files_balance = ["1.csv", "2.csv", "Balancier.csv", "Balancier2.csv", "Balancier3.csv", "Balancier4.csv",
-                 "Balancier5.csv", "Balancier6.csv", "Balancier7.csv"]
-files_no_balance = ["1.csv", "Non_Balancier1.csv", "Non_Balancier2.csv", "Non_Balancier3.csv", "Non_Balancier4.csv",
-                    "Non_Balancier6.csv"]
 
-export_file = "data.csv"
-if os.path.exists(export_file):
-    os.remove(export_file)
-nb_aquisition = 5
-# en ms et multiple de 20
-clean_time = 40
-
-columns = ["AccX [mg]", "AccY [mg]", "AccZ [mg]"]
-
-
-def generate_csv(file, _result):
+def create_result_file(name):
+    if os.path.exists(name):
+        os.remove(name)
+def generate_csv(file, _result, output_file):
+    columns = ["AccX [mg]", "AccY [mg]", "AccZ [mg]"]
     file_csv = pd.read_csv(file, usecols=columns)
     file_csv = file_csv[int(clean_time/20) : int(-clean_time/20)]
 
@@ -25,18 +15,26 @@ def generate_csv(file, _result):
     data = pd.concat(test, axis=1).dropna()
     data = data.assign(result=_result)
 
-    if os.path.exists(export_file):
-        data.to_csv(export_file, mode='a', header=not os.path.exists(export_file))
+    if os.path.exists(output_file):
+        data.to_csv(output_file, mode='a', header=not os.path.exists(output_file))
     else:
-        with open(export_file, 'w') as file:
+        with open(output_file, 'w') as file:
             print("création fichier")
-        data.to_csv(export_file, mode='a', header=True)
+        data.to_csv(output_file, mode='a', header=True)
 
 
-for file in files_no_balance:
-    file = "data/noBalance/" + file
-    generate_csv(file, 0)
+def generate():
+    output_file = "data.csv"
+    create_result_file(output_file);
+    files_no_balance = os.listdir("data/noBalance/")
+    for file in files_no_balance:
+        generate_csv("data/noBalance/"+file, 0, output_file)
+    files_balance = os.listdir("data/Balance/")
+    for file in files_balance:
+        generate_csv("data/Balance/"+file, 1, output_file)
 
-for file in files_balance:
-    file = "data/Balance/" + file
-    generate_csv(file, 1)
+if __name__ == '__main__':
+    nb_aquisition = 5
+    # en ms et multiple de 20
+    clean_time = 40
+    generate()
