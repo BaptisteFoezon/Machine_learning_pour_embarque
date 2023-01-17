@@ -6,7 +6,7 @@ import os
 def create_result_file(name):
     if os.path.exists(name):
         os.remove(name)
-def generate_csv(file, _result, output_file):
+def generate_csv(file, _result, output_file, nb_aquisition, clean_time):
     columns = ["AccX [mg]", "AccY [mg]", "AccZ [mg]"]
     file_csv = pd.read_csv(file, usecols=columns)
     file_csv = file_csv[int(clean_time/20) : int(-clean_time/20)]
@@ -23,18 +23,18 @@ def generate_csv(file, _result, output_file):
         data.to_csv(output_file, mode='a', header=True)
 
 
-def generate():
+def generate(nb_aquisition, clean_time):
     output_file = "data.csv"
     create_result_file(output_file);
     files_no_balance = os.listdir("data/noBalance/")
     for file in files_no_balance:
-        generate_csv("data/noBalance/"+file, 0, output_file)
+        generate_csv("data/noBalance/"+file, 0, output_file, nb_aquisition, clean_time)
     files_balance = os.listdir("data/Balance/")
     for file in files_balance:
-        generate_csv("data/Balance/"+file, 1, output_file)
+        generate_csv("data/Balance/"+file, 1, output_file, nb_aquisition, clean_time)
 
 if __name__ == '__main__':
     nb_aquisition = 5
     # en ms et multiple de 20
     clean_time = 40
-    generate()
+    generate(nb_aquisition, clean_time)
