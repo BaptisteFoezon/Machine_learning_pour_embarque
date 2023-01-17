@@ -4,6 +4,7 @@ from keras.models import Sequential
 from matplotlib import pyplot as plt
 from sklearn.model_selection import train_test_split
 import os
+from keras_visualizer import visualizer
 
 def train(nb_epochs, nb_batch):
     # Load the data from the CSV file
@@ -29,6 +30,8 @@ def train(nb_epochs, nb_batch):
 
     # Evaluate the model
     loss, accuracy = model.evaluate(X_test, y_test)
+
+    visualizer(model)
     print(f'Loss: {loss}, Accuracy: {accuracy}')
     # Show the plot
     plt.show()
@@ -42,7 +45,6 @@ def train(nb_epochs, nb_batch):
 
     with open("result/result%s/modele.json"%i, 'w') as f:
         f.write(model_json)
-
 
 if __name__ == "__main__":
     train()
