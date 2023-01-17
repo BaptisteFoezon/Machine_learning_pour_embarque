@@ -3,7 +3,7 @@ from keras.layers import Dense
 from keras.models import Sequential
 from matplotlib import pyplot as plt
 from sklearn.model_selection import train_test_split
-
+import os
 
 def train(nb_epochs, nb_batch):
     # Load the data from the CSV file
@@ -32,13 +32,15 @@ def train(nb_epochs, nb_batch):
     print(f'Loss: {loss}, Accuracy: {accuracy}')
     # Show the plot
     plt.show()
-
+    i = 0
+    while os.path.exists("result/result%s" % i):
+        i += 1
     # Save the model
-    model.save('model.h5')
+    model.save("result/result%s/model.h5" %i)
 
     model_json = model.to_json()
 
-    with open('modele.json', 'w') as f:
+    with open("result/result%s/modele.json"%i, 'w') as f:
         f.write(model_json)
 
 
