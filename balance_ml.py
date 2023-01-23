@@ -4,6 +4,7 @@ from keras.models import Sequential
 from matplotlib import pyplot as plt
 from sklearn.model_selection import train_test_split
 import os
+from tensorflow.keras.utils import plot_model
 from keras_visualizer import visualizer
 
 def train(nb_epochs, nb_batch):
@@ -19,7 +20,7 @@ def train(nb_epochs, nb_batch):
 
     # Build the model
     model = Sequential()
-    model.add(Dense(10, input_dim=X_train.shape[1], activation='relu'))
+    model.add(Dense(10, input_dim=X_train.shape[1]))
     model.add(Dense(1, activation='sigmoid'))
 
     # Compile the model
@@ -33,6 +34,8 @@ def train(nb_epochs, nb_batch):
 
     visualizer(model, format='png', view=True)
     print(f'Loss: {loss}, Accuracy: {accuracy}')
+    plot_model(model, to_file="model.png", show_shapes=True, show_layer_names=False, show_layer_activations=True)
+
     # Show the plot
     plt.show()
     i = 0
