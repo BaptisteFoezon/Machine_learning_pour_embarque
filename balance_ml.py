@@ -33,7 +33,7 @@ def train(nb_epochs, nb_batch):
     history = model.fit(X_train, y_train, epochs=nb_epochs, batch_size=nb_batch)
     print(history.history.keys())
     plt.plot(history.history['accuracy'], color='#066b8b')
-    #plt.plot(history.history['val_accuracy'], color='#b39200')
+    plt.plot(history.history['loss'], color='#b39200')
     plt.title('model accuracy')
     plt.ylabel('accuracy')
     plt.xlabel('epoch')
