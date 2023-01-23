@@ -5,6 +5,8 @@ from matplotlib import pyplot as plt
 from sklearn.model_selection import train_test_split
 import os
 from tensorflow.keras.utils import plot_model
+from matplotlib import pyplot as plt
+
 from keras_visualizer import visualizer
 
 def train(nb_epochs, nb_batch):
@@ -27,7 +29,15 @@ def train(nb_epochs, nb_batch):
     model.compile(loss='binary_crossentropy', optimizer='adam', metrics=['accuracy'])
 
     # Train the model
-    model.fit(X_train, y_train, epochs=nb_epochs, batch_size=nb_batch)
+    history =  model.fit(X_train, y_train, epochs=nb_epochs, batch_size=nb_batch)
+
+    plt.plot(history.history['accuracy'], color='#066b8b')
+    plt.plot(history.history['val_accuracy'], color='#b39200')
+    plt.title('model accuracy')
+    plt.ylabel('accuracy')
+    plt.xlabel('epoch')
+    plt.legend(['train', 'val'], loc='upper left')
+    plt.show()
 
     # Evaluate the model
     loss, accuracy = model.evaluate(X_test, y_test)
