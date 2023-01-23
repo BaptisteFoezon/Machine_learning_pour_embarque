@@ -9,6 +9,7 @@ from matplotlib import pyplot as plt
 
 from keras_visualizer import visualizer
 
+
 def train(nb_epochs, nb_batch):
     # Load the data from the CSV file
     data = pd.read_csv('data.csv')
@@ -29,10 +30,10 @@ def train(nb_epochs, nb_batch):
     model.compile(loss='binary_crossentropy', optimizer='adam', metrics=['accuracy'])
 
     # Train the model
-    history =  model.fit(X_train, y_train, epochs=nb_epochs, batch_size=nb_batch)
-
+    history = model.fit(X_train, y_train, epochs=nb_epochs, batch_size=nb_batch)
+    print(history.history.keys())
     plt.plot(history.history['accuracy'], color='#066b8b')
-    plt.plot(history.history['val_accuracy'], color='#b39200')
+    #plt.plot(history.history['val_accuracy'], color='#b39200')
     plt.title('model accuracy')
     plt.ylabel('accuracy')
     plt.xlabel('epoch')
@@ -52,12 +53,13 @@ def train(nb_epochs, nb_batch):
     while os.path.exists("result/result%s" % i):
         i += 1
     # Save the model
-    model.save("result/result%s/model.h5" %i)
+    model.save("result/result%s/model.h5" % i)
 
     model_json = model.to_json()
 
-    with open("result/result%s/modele.json"%i, 'w') as f:
+    with open("result/result%s/modele.json" % i, 'w') as f:
         f.write(model_json)
+
 
 if __name__ == "__main__":
     train()
